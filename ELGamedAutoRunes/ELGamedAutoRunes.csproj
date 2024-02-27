@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StartupObject></StartupObject>
+	 <PublishSingleFile>true</PublishSingleFile>
+	  <SelfContained>true</SelfContained>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	  <ApplicationIcon>Assets\ELGamed-Auto-Runes-Second.ico</ApplicationIcon>
+	  <FileVersion>1.0.1</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\ELGamed-Auto-Runes-Second.ico" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.59" />
+		<PackageReference Include="HtmlAgilityPack.CssSelectors" Version="1.0.2" />
+		<PackageReference Include="Websocket.Client" Version="4.3.30" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+
+	</ItemGroup>
+
+</Project>
