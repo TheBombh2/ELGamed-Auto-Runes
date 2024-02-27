@@ -3,7 +3,7 @@ ELGamed Auto Runes imports the most commonly used runes and summoner spells for 
 
 ## ELGamed Auto Runes in Action
 
-https://github.com/TheBombh2/ELGamedAutoRunes/assets/62998842/fbe8f3b2-ff10-4d62-a1cb-8214663eb4af
+https://github.com/TheBombh2/ELGamedAutoRunes/assets/62998842/bec5f7b2-5997-4153-88ac-b4fa279a107e
 
 ## What exactly does it do?
 
