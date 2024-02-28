@@ -1,5 +1,11 @@
 # ELGamed Auto Runes
+
+<p align="center">
+<img src="https://github.com/TheBombh2/ELGamed-Auto-Runes/assets/62998842/0118cfde-29b4-4456-895a-454ecbe908af)" /><br>
 ELGamed Auto Runes imports the most commonly used runes and summoner spells for your champion.
+</p>
+
+
 
 ## ELGamed Auto Runes in Action
 
