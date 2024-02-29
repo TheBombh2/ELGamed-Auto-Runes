@@ -1,11 +1,9 @@
 # ELGamed Auto Runes
 
 <p align="center">
-<img src="https://github.com/TheBombh2/ELGamed-Auto-Runes/assets/62998842/0118cfde-29b4-4456-895a-454ecbe908af)" /><br>
+<img src="https://github.com/TheBombh2/ELGamed-Auto-Runes/assets/62998842/0118cfde-29b4-4456-895a-454ecbe908af" /><br>
 ELGamed Auto Runes imports the most commonly used runes and summoner spells for your champion.
 </p>
-
-
 
 ## ELGamed Auto Runes in Action
 
@@ -22,3 +20,7 @@ This is a personal project intended for simple use. I created it because I wante
 ## IMPORTANT NOTE AFTER CLONING
 
 If you've cloned the project, ensure to copy the "data" folder and paste it alongside the executable within the "\bin\Debug\net6.0-windows" directory.
+
+## Artist
+
+The art was made by [Techno Zane](https://www.instagram.com/techno_zane1)
