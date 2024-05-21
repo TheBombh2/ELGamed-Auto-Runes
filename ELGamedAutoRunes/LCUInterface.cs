@@ -47,6 +47,7 @@ namespace ELGamedAutoRunes
 			mainUI.updateConnectionLBL("League is connected!");
 			mainUI.updateUIState("None");
 			await subscribeToEvents();
+			await getInitalGameFlowState();
 		}
 
 		public async Task subscribeToEvents()
@@ -264,12 +265,24 @@ namespace ELGamedAutoRunes
 		}
 
 
+		private async Task getInitalGameFlowState()
+		{
+			var result = await leagueClient.RequestHandler.GetJsonResponseAsync(HttpMethod.Get, "/lol-gameflow/v1/gameflow-phase");
+			updateGameFlow(result.Trim('"'));
+		}
+
 		private void onGameFlowChanged(object sender,LeagueEvent e)
 		{
 			var result = e.Data.ToString();
-			Console.WriteLine(result);
-			mainUI.updateUIState(result);
-			if(result != "ChampSelect")
+			updateGameFlow(result);
+			
+		}
+
+		private void updateGameFlow(string newState)
+		{
+			Console.WriteLine(newState);
+			mainUI.updateUIState(newState);
+			if (newState != "ChampSelect")
 			{
 				championLocked = false;
 				mainUI.updateChampInformation("None");
