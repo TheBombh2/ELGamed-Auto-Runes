@@ -25,7 +25,7 @@ namespace ELGamedAutoRunes
 			leagueInterface = new LCUInterface(this);
 
 			leagueInterface.connectToLC();
-			
+
 
 		}
 
@@ -67,14 +67,15 @@ namespace ELGamedAutoRunes
 
 					updateRuneTV(firstRunesTV, lockedInChampData.builds[0]);
 					updateWinRateLBL(firstWinRateLBL, lockedInChampData.builds[0].buildWinRate);
-					
+
 					if (lockedInChampData.builds.Count > 1)
 					{
 						updateRuneTV(secondRunesTV, lockedInChampData.builds[1]);
 						updateWinRateLBL(secondWinRateLBL, lockedInChampData.builds[1].buildWinRate);
 					}
-					
+
 					toggleApplyBtns(lockedInChampData.builds.Count > 1);
+					toggleRandomizeSkinBTN();
 				}
 			}
 		}
@@ -146,10 +147,11 @@ namespace ELGamedAutoRunes
 				firstRuneApplyBTN.Visible = !firstRuneApplyBTN.Visible;
 				secondRuneApplyBTN.Visible = !secondRuneApplyBTN.Visible;
 				champRoleLBL.Visible = !champRoleLBL.Visible;
-				
+				getRandomSkinBTN.Visible = !getRandomSkinBTN.Visible;
+
 			}
 		}
-		
+
 		private void toggleApplyBtns(bool secondBuildExist)
 		{
 			if (InvokeRequired)
@@ -163,6 +165,20 @@ namespace ELGamedAutoRunes
 
 				secondRuneApplyBTN.Enabled = secondBuildExist;
 				secondWinRateLBL.Visible = secondBuildExist;
+
+
+			}
+		}
+
+		private void toggleRandomizeSkinBTN()
+		{
+			if(InvokeRequired)
+			{
+				Invoke(new Action(toggleRandomizeSkinBTN), null);
+			}
+			else
+			{
+				getRandomSkinBTN.Enabled = !getRandomSkinBTN.Enabled;
 			}
 		}
 
@@ -223,7 +239,7 @@ namespace ELGamedAutoRunes
 				treeView.ExpandAll();
 			}
 		}
-		
+
 		private void clearTreeViews()
 		{
 			if (InvokeRequired)
@@ -237,16 +253,27 @@ namespace ELGamedAutoRunes
 			}
 		}
 
-		private void updateWinRateLBL(Label winRateLBL,string? winRate)
+		private void updateWinRateLBL(Label winRateLBL, string? winRate)
 		{
 			if (InvokeRequired)
 			{
-				Invoke(new Action<Label,string>(updateWinRateLBL),winRateLBL,winRate);
+				Invoke(new Action<Label, string>(updateWinRateLBL), winRateLBL, winRate);
 			}
 			else
 			{
 				winRateLBL.Text = "Win Rate: " + winRate;
 			}
+		}
+
+		private void getRandomSkinBTN_Click(object sender, EventArgs e)
+		{
+			try {
+				leagueInterface.rerollSelectedSkin();
+			}
+			catch
+			{
+
+			}			
 		}
 	}
 }

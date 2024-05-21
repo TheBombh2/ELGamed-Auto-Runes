@@ -8,6 +8,8 @@ using ELGamedAutoRunes.Models;
 using LCUSharp;
 using LCUSharp.Websocket;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace ELGamedAutoRunes
@@ -20,6 +22,7 @@ namespace ELGamedAutoRunes
 		private uggScrapper scrapper = new uggScrapper();
 		private List<runeModel>? runeModels;
 		List<championModel>? championModels;
+		private JArray availableSkins = new JArray();
 
 
 
@@ -160,16 +163,17 @@ namespace ELGamedAutoRunes
 
 		public async void setSummonerSpells(championBuild foundChampBuild)
 		{
-			//Get the normal order if spells
+			//Get the normal order of spells
 			int? firstSpell = foundChampBuild.firstSpellId;
 			int? secondSpell = foundChampBuild.secondSpellId;
 
 			//switch them if the checkbox is checked
-			if (mainUI.switchSpellsCB.Checked) {
+			/*if (mainUI.switchSpellsCB.Checked) {
 				var temp = secondSpell;
 				secondSpell = firstSpell;
 				firstSpell = temp;
 			}
+			*/
 			
 			var body = new
 			{
@@ -180,6 +184,18 @@ namespace ELGamedAutoRunes
 			var queryParameters = Enumerable.Empty<string>();
 			await leagueClient.RequestHandler.GetJsonResponseAsync(HttpMethod.Patch, "/lol-champ-select/v1/session/my-selection",queryParameters ,body);
 			await Console.Out.WriteLineAsync("Spells set");
+		}
+
+
+		public async void rerollSelectedSkin()
+		{
+			int randomSkinIndex = new Random().Next(0,availableSkins.Count());
+			var body = new
+			{
+				selectedSkinId = availableSkins[randomSkinIndex]["id"],
+			};
+			var queryParameters = Enumerable.Empty<string>();
+			await leagueClient.RequestHandler.GetJsonResponseAsync(HttpMethod.Patch, "/lol-champ-select/v1/session/my-selection", queryParameters, body);
 		}
 
 		private List<int> getRunesIds(List<string> runesNames)
@@ -271,9 +287,29 @@ namespace ELGamedAutoRunes
 				string name = convertIdToName(championId);
 				Console.WriteLine(name);
 				mainUI.updateChampInformation(name);
-
+				Task.Run(() => { initializeAvailbleSkins(); }); 
 
 			}
+		}
+
+		private async void initializeAvailbleSkins()
+		{
+			var json = await leagueClient.RequestHandler.GetJsonResponseAsync(HttpMethod.Get, "/lol-champ-select/v1/skin-carousel-skins");
+			JArray skinsList = JArray.Parse(json);
+			List<JObject> result = new List<JObject>();
+			for (int i = 1; i < skinsList.Count; i++)
+			{
+				var skin = skinsList[i];
+				if (skin != null)
+				{
+					bool owned = (bool)skin["ownership"]["owned"];
+					if (owned)
+					{
+						result.Add(new JObject(new JProperty("id", (int)skin["id"])));
+					}
+				}
+			}
+			availableSkins = JArray.FromObject(result);
 		}
 
 		private string convertIdToName(string key)
@@ -290,5 +326,8 @@ namespace ELGamedAutoRunes
 			return "noChampSelected";
 		}
 
+
+
 	}
+
 }

@@ -40,6 +40,7 @@
 			champRoleLBL = new Label();
 			firstWinRateLBL = new Label();
 			secondWinRateLBL = new Label();
+			getRandomSkinBTN = new Button();
 			SuspendLayout();
 			// 
 			// connectionStatusLBL
@@ -157,11 +158,24 @@
 			secondWinRateLBL.Text = "Win Rate:";
 			secondWinRateLBL.Visible = false;
 			// 
+			// getRandomSkinBTN
+			// 
+			getRandomSkinBTN.Enabled = false;
+			getRandomSkinBTN.Location = new Point(180, 522);
+			getRandomSkinBTN.Name = "getRandomSkinBTN";
+			getRandomSkinBTN.Size = new Size(100, 23);
+			getRandomSkinBTN.TabIndex = 16;
+			getRandomSkinBTN.Text = "Randomize Skin";
+			getRandomSkinBTN.UseVisualStyleBackColor = true;
+			getRandomSkinBTN.Visible = false;
+			getRandomSkinBTN.Click += getRandomSkinBTN_Click;
+			// 
 			// Main
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(442, 516);
+			ClientSize = new Size(442, 557);
+			Controls.Add(getRandomSkinBTN);
 			Controls.Add(secondWinRateLBL);
 			Controls.Add(firstWinRateLBL);
 			Controls.Add(champRoleLBL);
@@ -194,5 +208,6 @@
 		private Label champRoleLBL;
 		private Label firstWinRateLBL;
 		private Label secondWinRateLBL;
+		private Button getRandomSkinBTN;
 	}
 }
