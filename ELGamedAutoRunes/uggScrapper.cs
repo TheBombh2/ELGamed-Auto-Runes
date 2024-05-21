@@ -313,86 +313,10 @@ namespace ELGamedAutoRunes
 
 			//Fetch summoner Spells
 			build.firstSpell = summonerSpellsDiv.LastChild.FirstChild.GetAttributeValue("alt", "None").Replace("Summoner Spell ", "");
-			switch (build.firstSpell)
-			{
-				case "Cleanse":
-					build.firstSpellId = 1;
-					break;
-				case "Flash":
-					build.firstSpellId = 4;
-					break;
-				case "Ghost":
-					build.firstSpellId = 6;
-					break;
-				case "Exhaust":
-					build.firstSpellId = 3;
-					break;
-				case "Heal":
-					build.firstSpellId = 7;
-					break;
-				case "Smite":
-					build.firstSpellId = 11;
-					break;
-				case "Teleport":
-					build.firstSpellId = 12;
-					break;
-				case "Ignite":
-					build.firstSpellId = 14;
-					break;
-				case "Barrier":
-					build.firstSpellId = 21;
-					break;
-				case "Clarity":
-					build.firstSpellId = 13;
-					break;
-				case "Mark":
-					build.firstSpellId = 32;
-					break;
-				default:
-					build.firstSpellId = 7;
-					break;
-			}
+			build.firstSpellId = fetchSummonerSpellId(build.firstSpell);
 
 			build.secondSpell = summonerSpellsDiv.LastChild.LastChild.GetAttributeValue("alt", "None").Replace("Summoner Spell ", "");
-			switch (build.secondSpell)
-			{
-				case "Cleanse":
-					build.secondSpellId = 1;
-					break;
-				case "Flash":
-					build.secondSpellId = 4;
-					break;
-				case "Ghost":
-					build.secondSpellId = 6;
-					break;
-				case "Exhaust":
-					build.secondSpellId = 3;
-					break;
-				case "Heal":
-					build.secondSpellId = 7;
-					break;
-				case "Smite":
-					build.secondSpellId = 11;
-					break;
-				case "Teleport":
-					build.secondSpellId = 12;
-					break;
-				case "Ignite":
-					build.secondSpellId = 14;
-					break;
-				case "Barrier":
-					build.secondSpellId = 21;
-					break;
-				case "Clarity":
-					build.secondSpellId = 13;
-					break;
-				case "Mark":
-					build.secondSpellId = 32;
-					break;
-				default:
-					build.secondSpellId = 4;
-					break;
-			}
+			build.secondSpellId = fetchSummonerSpellId(build.secondSpell);
 
 
 			return build;
@@ -402,6 +326,37 @@ namespace ELGamedAutoRunes
 			string fullLink = LINK + championName + "/" + specificData + "/";
             HtmlAgilityPack.HtmlDocument document = web.Load(fullLink);
 			return document;
+		}
+
+		private int fetchSummonerSpellId(string spellName)
+		{
+			switch (spellName)
+			{
+				case "Cleanse":
+					 return 1;
+				case "Flash":
+					 return 4;
+				case "Ghost":
+					 return 6;
+				case "Exhaust":
+					 return 3;
+				case "Heal":
+					return 7;
+				case "Smite":
+					return 11;
+				case "Teleport":
+					return 12;
+				case "Ignite":
+					return 14;
+				case "Barrier":
+					return 21;
+				case "Clarity":
+					return 13;
+				case "Mark":
+					return 32;
+				default:
+					return 4;
+			}
 		}
 
 		
