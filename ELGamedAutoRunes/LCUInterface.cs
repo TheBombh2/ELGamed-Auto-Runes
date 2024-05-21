@@ -169,12 +169,12 @@ namespace ELGamedAutoRunes
 			int? secondSpell = foundChampBuild.secondSpellId;
 
 			//switch them if the checkbox is checked
-			/*if (mainUI.switchSpellsCB.Checked) {
+			if (mainUI.switchSpellsCB.Checked) {
 				var temp = secondSpell;
 				secondSpell = firstSpell;
 				firstSpell = temp;
 			}
-			*/
+			
 			
 			var body = new
 			{
